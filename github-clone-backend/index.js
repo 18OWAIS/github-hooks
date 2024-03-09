@@ -3,6 +3,9 @@ const app = express();
 app.use(express.json());
 const axios = require('axios');
 
+const cors = require('cors');
+app.use(cors());
+
 // { payloadUrl: 'url', secret: ''}
 const webhooks = {
     COMMIT: [],
@@ -10,10 +13,11 @@ const webhooks = {
     MERGE: [],
 };
 
+
 app.post('/api/webhooks', (req, res) => {
     const { payloadUrl, secret, eventTypes } = req.body;
     // ['COMMIT', 'PUSH']
-    eventTypes.forEach((eventType) => {
+        eventTypes.forEach((eventType) => {
         webhooks[eventType].push({ payloadUrl, secret });
     });
     return res.sendStatus(201);

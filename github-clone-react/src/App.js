@@ -31,7 +31,7 @@ function App() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('/api/webhooks', {
+        axios.post('http://localhost:5600/api/webhooks', {
             ...formData,
             eventTypes: formData.eventTypes
                 .filter((item) => !!item.checked)
@@ -65,9 +65,9 @@ function App() {
     };
 
     const handleEventHappened = (key) => {
-        axios.post('/api/event-emulate', {
+        axios.post('http://localhost:5600/api/event-emulate', {
             type: key,
-            data: { eventType: key, initiator: 'Rakesh K' },
+            data: { eventType: key, initiator: 'Mohd Owais' },
         });
     };
     return (

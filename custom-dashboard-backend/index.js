@@ -4,7 +4,6 @@ const app = express();
 app.use(express.json());
 
 const messages = [];
-
 const authMiddleware = (req, res, next) => {
     const headers = req.headers;
     const secretHeader = headers['x-secret'];
@@ -20,6 +19,7 @@ app.post('/git-info', authMiddleware, (req, res) => {
 });
 
 app.get('/', (req, res) => {
+    console.log(messages)
     return res.json(messages);
 });
 
